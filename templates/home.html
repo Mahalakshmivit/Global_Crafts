@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Global Crafts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .craft-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .craft-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .add-button {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Global Crafts</h1>
+    <a href="{{ url_for('add_craft') }}" class="add-button">Add New Craft</a>
+    
+    <div class="craft-list">
+        {% for craft in crafts %}
+        <div class="craft-card">
+            <h3>{{ craft.name }}</h3>
+            <p>Origin: {{ craft.origin }}</p>
+            <p>Price: ${{ "%.2f"|format(craft.price) }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
