@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ product[1] }} - Global Crafts</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; }
+        .product-detail { 
+            max-width: 600px; 
+            margin: 20px auto; 
+            background-color: white; 
+            padding: 20px; 
+            border-radius: 5px; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+        }
+        .product-detail img { max-width: 100%; height: auto; }
+        .product-actions { display: flex; justify-content: space-between; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="product-detail">
+        <h1>{{ product[1] }}</h1>
+        <img src="{{ url_for('static', filename=product[4]) }}" alt="{{ product[1] }}">
+        <p>{{ product[2] }}</p>
+        <p>Price: ${{ product[3] }}</p>
+        <p>Available Stock: {{ product[5] }}</p>
+        <div class="product-actions">
+            <a href="{{ url_for('home') }}">Back to Home</a>
+            <a href="{{ url_for('order_product', product_id=product[0]) }}">Order Now</a>
+        </div>
+    </div>
+</body>
+</html>

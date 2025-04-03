@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation - Global Crafts</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo">Global Crafts</div>
+            <div class="search-container">
+                <input type="text" placeholder="Search for products, brands and more">
+                <button>Search</button>
+            </div>
+            <div class="nav-buttons">
+                <button>Login</button>
+                <button>Cart</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="confirmation-page">
+        <div class="confirmation-container">
+            <div class="confirmation-header">
+                <h1>Order Confirmed!</h1>
+                <p>Thank you for your purchase from Global Crafts</p>
+                <p>Order placed on: {{ current_time }}</p>
+            </div>
+
+            <div class="order-details">
+                <div class="product-section">
+                    <h3>Product Details</h3>
+                    <div class="product-card">
+                        <img src="{{ url_for('static', filename='products/' + order[8]) }}" alt="{{ order[6] }}">
+                        <div class="product-info">
+                            <h2>{{ order[6] }}</h2>
+                            <p>{{ order[7] }}</p>
+                            <div class="product-pricing">
+                                <div class="price-details">
+                                    <span>Price</span>
+                                    <strong>${{ "{:.2f}".format(order[5] / order[1]) }}</strong>
+                                </div>
+                                <div class="quantity-details">
+                                    <span>Quantity</span>
+                                    <strong>{{ order[1] }}</strong>
+                                </div>
+                                <div class="total-details">
+                                    <span>Total</span>
+                                    <strong>${{ "{:.2f}".format(order[5]) }}</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="customer-section">
+                    <h3>Customer Information</h3>
+                    <div class="customer-details">
+                        <div class="detail-row">
+                            <span class="detail-label">Name</span>
+                            <span class="detail-value">{{ order[2] }}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Email</span>
+                            <span class="detail-value">{{ order[3] }}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Shipping Address</span>
+                            <span class="detail-value">{{ order[4] }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="order-actions">
+                <a href="{{ url_for('home') }}" class="continue-shopping">Continue Shopping</a>
+                <button class="print-receipt">Print Receipt</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <div class="footer-column">
+                <h4>About</h4>
+                <a href="#">Our Story</a>
+                <a href="#">Careers</a>
+            </div>
+            <div class="footer-column">
+                <h4>Help</h4>
+                <a href="#">Shipping</a>
+                <a href="#">Returns</a>
+            </div>
+            <div class="footer-column">
+                <h4>Social</h4>
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+                <a href="#">Twitter</a>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2025 Global Crafts. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script>
+        document.querySelector('.print-receipt').addEventListener('click', function() {
+            window.print();
+        });
+    </script>
+</body>
+</html>
+
